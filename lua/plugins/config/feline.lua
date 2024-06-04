@@ -1,4 +1,4 @@
-local colors = require 'highlights'.get
+local colors = require 'core.colors'
 local lsp = require "feline.providers.lsp"
 
 colors.one_bg = "#373844"
@@ -45,9 +45,9 @@ table.insert(components.active, {})
 table.insert(components.active, {})
 
 components.active[1][1] = {
-  provider = "  ",
+  provider = " 󰊠 ",
 
-  hl = { fg = colors.white, bg = colors.purple },
+  hl = { fg = colors.fg, bg = colors.purple },
 
   right_sep = {
     str = style.right,
@@ -70,7 +70,7 @@ components.active[1][2] = {
     return " " .. icon .. " " .. filename .. " "
   end,
 
-  hl = { fg = colors.white, bg = colors.lightbg },
+  hl = { fg = colors.fg, bg = colors.lightbg },
 
   right_sep = { str = style.right, hl = { fg = colors.lightbg, bg = colors.lightbg2 } },
 }
@@ -78,7 +78,7 @@ components.active[1][2] = {
 components.active[1][3] = {
   provider = function()
     local dir_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-    return "  " .. dir_name .. " "
+    return " 󰉋 " .. dir_name .. " "
   end,
 
   hl = { fg = colors.grey_fg, bg = colors.lightbg2 },
@@ -91,7 +91,7 @@ components.active[1][3] = {
 components.active[1][4] = {
   provider = "git_diff_added",
   hl = { fg = colors.grey_fg, bg = colors.statusline_bg },
-  icon = " ",
+  icon = " ",
 }
 
 components.active[1][5] = {
@@ -103,7 +103,7 @@ components.active[1][5] = {
 components.active[1][6] = {
   provider = "git_diff_removed",
   hl = { fg = colors.grey_fg, bg = colors.statusline_bg },
-  icon = "  ",
+  icon = "  ",
 }
 
 components.active[1][7] = {
@@ -112,16 +112,16 @@ components.active[1][7] = {
     return lsp.diagnostics_exist "Error"
   end,
 
-  hl = { fg = colors.red },
+  hl = { fg = colors.red, bg = colors.statusline_bg },
   icon = "  ",
 }
 
 components.active[1][8] = {
   provider = "diagnostic_warnings",
   enabled = function()
-    return lsp.diagnostics_exist "Warning"
+    return lsp.diagnostics_exist "Warn"
   end,
-  hl = { fg = colors.yellow },
+  hl = { fg = colors.yellow, bg = colors.statusline_bg },
   icon = "  ",
 }
 
@@ -130,17 +130,17 @@ components.active[1][9] = {
   enabled = function()
     return lsp.diagnostics_exist "Hint"
   end,
-  hl = { fg = colors.purple },
-  icon = "  ",
+  hl = { fg = colors.purple, bg = colors.statusline_bg },
+  icon = "  ",
 }
 
 components.active[1][10] = {
   provider = "diagnostic_info",
   enabled = function()
-    return lsp.diagnostics_exist "Information"
+    return lsp.diagnostics_exist "Info"
   end,
-  hl = { fg = colors.green },
-  icon = "  ",
+  hl = { fg = colors.green, bg = colors.statusline_bg },
+  icon = "  ",
 }
 components.active[3][1] = {
   provider = function()
@@ -173,8 +173,8 @@ components.active[3][4] = {
   provider = " ",
   hl = function()
     return {
-       fg = colors.statusline_bg,
-       bg = modes[vim.fn.mode()][2],
+      fg = colors.statusline_bg,
+      bg = modes[vim.fn.mode()][2],
     }
   end,
 }
@@ -203,15 +203,16 @@ components.active[3][7] = {
 
 components.active[3][8] = {
   provider = " ",
-  enabled = function()
-    return vim.fn.line "." >= 100
-  end
+
+  hl = { fg = colors.green, bg = colors.lightbg2 },
 }
 
 components.active[3][9] = {
   provider = "position",
   hl = { fg = colors.green, bg = colors.lightbg2 },
 }
+
+components.inactive = components.active
 
 require("feline").setup {
   colors = {
