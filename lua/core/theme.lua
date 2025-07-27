@@ -49,7 +49,7 @@ local groups = {
   CursorLine = { bg = colors.selection, },
   ColorColumn = { bg = colors.selection, },
 
-  StatusLine = { fg = colors.white, bg = colors.black, },
+  StatusLine = { fg = colors.white, bg = colors.statusline, },
   StatusLineNC = { fg = colors.comment, },
   StatusLineTerm = { fg = colors.white, bg = colors.black, },
   StatusLineTermNC = { fg = colors.comment, },

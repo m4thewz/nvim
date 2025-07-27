@@ -72,10 +72,9 @@ lazy.setup(
       config = function() require('plugins.config.bufferline') end
     },
     {
-      'freddiehaddad/feline.nvim',
-      config = function() require('plugins.config.feline') end,
-      event = "VimEnter",
-      lazy = true
+      'nvim-lualine/lualine.nvim',
+      dependencies = 'nvim-tree/nvim-web-devicons',
+      config = function () require('plugins.config.lualine') end
     },
     {
       'nvim-telescope/telescope.nvim',
