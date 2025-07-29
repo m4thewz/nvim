@@ -38,6 +38,7 @@ opt.shadafile = ""
 opt.writebackup = false
 opt.undofile = true
 opt.swapfile = false
+opt.showmode = false
 opt.whichwrap:append "<>[]hl"
 opt.fillchars:append 'eob: '
 opt.listchars:append "space: "
